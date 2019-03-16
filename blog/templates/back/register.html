@@ -1,0 +1,60 @@
+{% extends 'back/base_main2.html' %}
+
+{% block title %}
+    后台注册
+{% endblock %}
+
+
+{% block js %}
+    {{ super() }}
+    <script src="/static/back/js/verificationNumbers.js"></script>
+    <script src="/static/back/js/Particleground.js"></script>
+    <script>
+        $(document).ready(function() {
+          //粒子背景特效
+          $('body').particleground({
+            dotColor: '#5cbdaa',
+            lineColor: '#5cbdaa'
+          });
+          //验证码
+          createCode();
+          //测试提交，对接程序删除即可
+          $(".submit_btn").click(function(){
+              location.href="index.html";
+              });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<form action="/register/" method="post">
+    <dl class="admin_login">
+        <dt>
+            <strong>博客后台管理系统</strong>
+            <em>Management System</em>
+        </dt>
+        <dd class="user_icon">
+            <input name="username" type="text" placeholder="账号" class="login_txtbx"/>
+        </dd>
+        <dd class="pwd_icon">
+            <input name="password" type="password" placeholder="密码" class="login_txtbx"/>
+        </dd>
+        <dd class="pwd_icon">
+            <input name="password2" type="password" placeholder="确认密码" class="login_txtbx"/>
+        </dd>
+        {{ error }}
+        <dd>
+            <input type="submit" value="立即注册" class="submit_btn"/>
+        </dd>
+        <dd>
+            <input name="im_login" type="submit" value="点击登录" class="submit_btn"/>
+        </dd>
+
+        <dd>
+
+            <p>{{ '© 1997-2027 Ftr.鸱夷 版权所有' | safe }}</p>
+            <p>{{ '滇C9-19970909-9' | safe }}</p>
+        </dd>
+    </dl>
+</form>
+{% endblock %}

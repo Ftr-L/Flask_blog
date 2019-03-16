@@ -1,0 +1,41 @@
+{% extends 'back/base_main.html' %}
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">用户列表</h2>
+       <a href="{{ url_for('back.users_add') }}" class="fr top_rt_btn add_icon">添加新用户</a>
+      </div>
+      <table class="table">
+       <tr>
+        <th>用户账号</th>
+        <th>用户密码</th>
+        <th>操作</th>
+       </tr>
+       {% for user in users %}
+       <tr>
+        <td class="center">{{ user.u_name }}</td>
+        <!--overflow: hidden;/*内容超出后隐藏*/-->
+        <!--text-overflow: ellipsis;/* 超出内容显示为省略号*/-->
+        <!--white-space: nowrap;/*文本不进行换行*/-->
+        <td class="center" style="overflow:hidden">{{ user.u_password }}</td>
+        <td class="center">
+         <!--<a href="user_detail.html" title="编辑" class="link_icon">&#101;</a>-->
+         <a href="{{ url_for('back.user_del', id=user.id) }}" title="删除" class="link_icon">&#100;</a>
+        </td>
+       </tr>
+       {% endfor %}
+      </table>
+      <!--<aside class="paging">-->
+       <!--<a>第一页</a>-->
+       <!--<a>1</a>-->
+       <!--<a>2</a>-->
+       <!--<a>3</a>-->
+       <!--<a>…</a>-->
+       <!--<a>1004</a>-->
+       <!--<a>最后一页</a>-->
+      <!--</aside>-->
+ </div>
+</section>
+{% endblock %}
